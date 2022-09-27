@@ -1,7 +1,11 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 export default function Header() {
+  const user = JSON.parse(localStorage.getItem("ecom-user"));
+
+  const navigate = useNavigate();
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container fluid>
@@ -22,6 +26,20 @@ export default function Header() {
             </>
           )}
         </Nav>
+        {localStorage.getItem("ecom-user") && (
+          <Nav className="mr-auto">
+            <NavDropdown title={user.name}>
+              <NavDropdown.Item
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/");
+                }}
+              >
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        )}
       </Container>
     </Navbar>
   );
