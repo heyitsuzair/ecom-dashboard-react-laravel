@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import UpdateProduct from "../pages/UpdateProduct";
 import GetProducts from "../pages/GetProducts";
+import Search from "../pages/Search";
 
 export default function RoutesIndex() {
   return (
@@ -16,6 +17,7 @@ export default function RoutesIndex() {
           <Route path="/getProducts" element={<GetProducts />} />
           <Route path="/register" element={<Register />} />
           <Route path="/updateProduct/:id" element={<UpdateProduct />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Router>
     </>

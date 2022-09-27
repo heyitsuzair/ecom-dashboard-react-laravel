@@ -6,3 +6,4 @@ export const getProducts = server + "api/getProducts";
 export const deleteProduct = server + "api/deleteProduct";
 export const getSingleProduct = server + "api/getSingleProduct";
 export const updateProduct = server + "api/updateProduct";
+export const search = server + "api/search";
