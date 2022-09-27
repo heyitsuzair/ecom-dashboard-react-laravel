@@ -4,8 +4,6 @@ import AddProduct from "../pages/AddProduct";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import UpdateProduct from "../pages/UpdateProduct";
-
-import Header from "../components/commons/Header/Header";
 import GetProducts from "../pages/GetProducts";
 
 export default function RoutesIndex() {
