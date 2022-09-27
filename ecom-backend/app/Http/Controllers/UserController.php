@@ -18,4 +18,18 @@ class UserController extends Controller
         $user->save();
         return $user;
     }
+    function login(Request $req)
+    {
+        $user = User::where('email', $req->email)->first();
+        if (!$user || !Hash::check($req->password, $user->password)) {
+            return response([
+                'error' => true,
+                'message' => 'Invalid Credentials'
+            ]);
+        }
+        return response([
+            'error' => false,
+            'user' => $user
+        ]);
+    }
 }
