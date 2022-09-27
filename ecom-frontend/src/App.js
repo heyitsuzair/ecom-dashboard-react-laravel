@@ -1,9 +1,9 @@
 import "./App.css";
-import { Button } from "react-bootstrap";
+import RoutesIndex from "./Routes/Routes";
 function App() {
   return (
     <div>
-      <Button>Hello</Button>
+      <RoutesIndex />
     </div>
   );
 }

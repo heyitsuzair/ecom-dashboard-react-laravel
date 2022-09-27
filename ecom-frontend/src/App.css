@@ -1,0 +1,6 @@
+/* Header Component */
+.nav_bar_wrapper a {
+  padding-left: 20px;
+  text-decoration: none;
+  color: white;
+}
