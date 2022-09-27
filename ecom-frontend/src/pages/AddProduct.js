@@ -1,5 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/commons/Header/Header";
 
 export default function AddProduct() {
-  return <div>AddProduct</div>;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("ecom-user")) {
+      navigate("/");
+      return;
+    }
+    //eslint-disable-next-line
+  }, []);
+
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }

@@ -9,13 +9,18 @@ export default function Header() {
           <Link to="/">Navbar</Link>
         </Navbar.Brand>
         <Nav className="me-auto nav_bar_wrapper" gap={3}>
-          <Link to="/addProduct">Add Product</Link>
+          {localStorage.getItem("ecom-user") ? (
+            <>
+              <Link to="/addProduct">Add Product</Link>
+              <Link to="/updateProduct">Update Product</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/">Login</Link>
 
-          <Link to="/updateProduct">Update Product</Link>
-
-          <Link to="/login">Login</Link>
-
-          <Link to="/register">Register</Link>
+              <Link to="/register">Register</Link>
+            </>
+          )}
         </Nav>
       </Container>
     </Navbar>
