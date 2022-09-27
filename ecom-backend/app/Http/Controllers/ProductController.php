@@ -31,4 +31,8 @@ class ProductController extends Controller
             return ['error' => true, 'message' => 'Internal Server Error!'];
         }
     }
+    function getSingleProduct($id)
+    {
+        return Product::find($id);
+    }
 }

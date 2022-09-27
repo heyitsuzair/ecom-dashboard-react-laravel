@@ -39,6 +39,9 @@ export default function AddProduct() {
           description: "",
           file: "",
         });
+        alert("Product Added!");
+      } else {
+        alert("Something Went Wrong!");
       }
     });
   };
