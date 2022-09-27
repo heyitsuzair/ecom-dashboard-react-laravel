@@ -35,4 +35,22 @@ class ProductController extends Controller
     {
         return Product::find($id);
     }
+    function updateProduct($id, Request $req)
+    {
+        $product = Product::find($id);
+        $product->name = $req->input('name');
+        $product->price = $req->input('price');
+        $product->description = $req->input('description');
+        if ($req->file('file')) {
+            $product->img_path = $req->file('file')->store('products');
+        }
+        $product->save();
+        if ($product) {
+
+            return ['error' => false, 'message' => 'Product Updated'];
+        } else {
+
+            return ['error' => true, 'message' => 'Internal Server Error!'];
+        }
+    }
 }

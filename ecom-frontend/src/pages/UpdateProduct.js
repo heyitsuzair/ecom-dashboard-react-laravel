@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/commons/Header/Header";
 import { Container, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { getSingleProduct, server } from "../utils/apis/apis";
+import { getSingleProduct, server, updateProduct } from "../utils/apis/apis";
 
 export default function UpdateProduct() {
   const navigate = useNavigate();
@@ -19,6 +19,19 @@ export default function UpdateProduct() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", values.file);
+    formData.append("name", values.name);
+    formData.append("description", values.description);
+    formData.append("price", values.price);
+
+    try {
+      const { data } = await axios.post(updateProduct + "/" + id, formData);
+      console.log(data);
+    } catch (error) {
+      alert("Something Went Wrong!");
+      console.log(error);
+    }
   };
 
   const handleChange = (e) => {
@@ -95,7 +108,6 @@ export default function UpdateProduct() {
               }
               type="file"
               name="file"
-              required
               defaultValue={values.img_path}
             />
           </Form.Group>
