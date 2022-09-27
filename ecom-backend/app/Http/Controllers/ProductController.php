@@ -22,4 +22,13 @@ class ProductController extends Controller
     {
         return Product::all();
     }
+    function deleteProduct($id)
+    {
+        $result = Product::where('id', $id)->delete();
+        if ($result) {
+            return ['error' => false, 'message' => 'Product Deleted'];
+        } else {
+            return ['error' => true, 'message' => 'Internal Server Error!'];
+        }
+    }
 }
