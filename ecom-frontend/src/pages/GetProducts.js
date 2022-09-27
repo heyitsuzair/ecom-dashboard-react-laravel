@@ -25,17 +25,21 @@ export default function GetProducts() {
   };
 
   const handleProductDelete = async (productId) => {
-    await axios.delete(deleteProduct + "/" + productId).then(({ data }) => {
-      if (data.error === false) {
-        const filterProducts = data.filter((item) => {
-          return item.id !== productId;
-        });
-        setData(filterProducts);
-      } else {
-        alert(data.message);
-        return;
-      }
-    });
+    try {
+      await axios.delete(deleteProduct + "/" + productId).then(({ data }) => {
+        if (data.error === false) {
+          const filterProducts = data.filter((item) => {
+            return item.id !== productId;
+          });
+          setData(filterProducts);
+        } else {
+          alert(data.message);
+          return;
+        }
+      });
+    } catch (error) {
+      alert("Something Went Wrong! Please Try Again!");
+    }
   };
 
   useEffect(() => {
@@ -46,7 +50,7 @@ export default function GetProducts() {
   return (
     <div>
       <Header />
-      <Container className="mt-4 col-md-6">
+      <Container className="mt-4 col-md-8">
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -55,6 +59,7 @@ export default function GetProducts() {
               <th>Description</th>
               <th>Price</th>
               <th>Image</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -85,6 +90,12 @@ export default function GetProducts() {
                         onClick={() => handleProductDelete(item.id)}
                       >
                         Delete
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => navigate("/updateProduct/" + item.id)}
+                      >
+                        Edit
                       </Button>
                     </td>
                   </tr>

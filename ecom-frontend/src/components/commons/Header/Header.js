@@ -16,7 +16,6 @@ export default function Header() {
           {localStorage.getItem("ecom-user") ? (
             <>
               <Link to="/addProduct">Add Product</Link>
-              <Link to="/updateProduct">Update Product</Link>
               <Link to="/getProducts">Products</Link>
             </>
           ) : (

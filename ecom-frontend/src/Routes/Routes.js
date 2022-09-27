@@ -15,7 +15,7 @@ export default function RoutesIndex() {
           <Route path="/" element={<Login />} />
           <Route path="/getProducts" element={<GetProducts />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/updateProduct" element={<UpdateProduct />} />
+          <Route path="/updateProduct/:id" element={<UpdateProduct />} />
         </Routes>
       </Router>
     </>
