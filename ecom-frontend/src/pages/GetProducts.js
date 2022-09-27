@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/commons/Header/Header";
-import { getProducts, server } from "../utils/apis/apis";
+import { getProducts, server, deleteProduct } from "../utils/apis/apis";
 
 export default function GetProducts() {
   const navigate = useNavigate();
@@ -24,10 +24,24 @@ export default function GetProducts() {
     });
   };
 
+  const handleProductDelete = async (productId) => {
+    await axios.delete(deleteProduct + "/" + productId).then(({ data }) => {
+      if (data.error === false) {
+        const filterProducts = data.filter((item) => {
+          return item.id !== productId;
+        });
+        setData(filterProducts);
+      } else {
+        alert(data.message);
+        return;
+      }
+    });
+  };
+
   useEffect(() => {
     getAllProducts();
     //eslint-disable-next-line
-  }, []);
+  }, [data]);
 
   return (
     <div>
@@ -64,6 +78,14 @@ export default function GetProducts() {
                         width={100}
                         alt="Product"
                       />
+                    </td>
+                    <td>
+                      <Button
+                        variant="danger"
+                        onClick={() => handleProductDelete(item.id)}
+                      >
+                        Delete
+                      </Button>
                     </td>
                   </tr>
                 );
