@@ -7,11 +7,15 @@ export default function SearchProducts() {
   const [data, setData] = useState([]);
 
   const handleSearch = async (e) => {
-    try {
-      const { data } = await axios.get(search + "/" + e.target.value);
-      setData(data);
-    } catch (error) {
-      console.log(error);
+    if (e.target.value.length > 1) {
+      try {
+        const { data } = await axios.get(search + "/" + e.target.value);
+        setData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      return;
     }
   };
 
